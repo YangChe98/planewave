@@ -42,8 +42,11 @@ void ode45_solver_parallel(MAP *vecmap, VEC *c, VEC *cini, INT Nbasis,
       for (j = 0; j < Nbasis; j++) {
         for (k = 0; k < Nbasis; k++) {
           location = i * Nbasis * Nbasis + j * Nbasis + k;
+          i1 = i - Nbasis / 2;
+          j1 = j - Nbasis / 2;
+          k1 = k - Nbasis / 2;
           phgMatAddGlobalEntry(DiagMat, location, location,
-                               -(i ^ 2 + j ^ 2 + k ^ 2) / 2);
+                               -(i1 ^ 2 + j1 ^ 2 + k1 ^ 2) / 2);
         }
       }
     }
